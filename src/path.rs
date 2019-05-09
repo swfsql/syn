@@ -290,7 +290,7 @@ pub mod parsing {
     }
 
     impl PathSegment {
-        fn parse_helper(input: ParseStream, expr_style: bool) -> Result<Self> {
+        pub fn parse_helper(input: ParseStream, expr_style: bool) -> Result<Self> {
             if input.peek(Token![super])
                 || input.peek(Token![self])
                 || input.peek(Token![Self])
