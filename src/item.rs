@@ -1182,7 +1182,7 @@ pub mod parsing {
         })
     }
 
-    fn arg_captured(input: ParseStream) -> Result<ArgCaptured> {
+    pub fn arg_captured(input: ParseStream) -> Result<ArgCaptured> {
         Ok(ArgCaptured {
             pat: input.parse()?,
             colon_token: input.parse()?,
@@ -2107,7 +2107,7 @@ pub mod parsing {
 }
 
 #[cfg(feature = "printing")]
-mod printing {
+pub mod printing {
     use super::*;
 
     use proc_macro2::TokenStream;
@@ -2630,7 +2630,7 @@ mod printing {
         }
     }
 
-    struct NamedDecl<'a>(&'a FnDecl, &'a Ident);
+    pub struct NamedDecl<'a>(&'a FnDecl, &'a Ident);
 
     impl<'a> ToTokens for NamedDecl<'a> {
         fn to_tokens(&self, tokens: &mut TokenStream) {

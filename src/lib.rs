@@ -231,6 +231,7 @@
     allow(
         block_in_if_condition_stmt,
         cognitive_complexity,
+        cyclomatic_complexity,
         const_static_lifetime,
         deprecated_cfg_attr,
         doc_markdown,
@@ -273,7 +274,8 @@ extern crate unicode_xid;
 extern crate quote;
 
 #[macro_use]
-mod macros;
+pub mod macros;
+pub use macros::*;
 
 // Not public API.
 #[cfg(feature = "parsing")]
@@ -284,16 +286,16 @@ pub mod group;
 #[macro_use]
 pub mod token;
 
-mod ident;
+pub mod ident;
 pub use ident::Ident;
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod attr;
+pub mod attr;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use attr::{AttrStyle, Attribute, AttributeArgs, Meta, MetaList, MetaNameValue, NestedMeta};
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod data;
+pub mod data;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use data::{
     Field, Fields, FieldsNamed, FieldsUnnamed, Variant, VisCrate, VisPublic, VisRestricted,
@@ -301,7 +303,7 @@ pub use data::{
 };
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod expr;
+pub mod expr;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use expr::{
     Expr, ExprArray, ExprAssign, ExprAssignOp, ExprAsync, ExprBinary, ExprBlock, ExprBox,
@@ -320,7 +322,7 @@ pub use expr::{
 };
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod generics;
+pub mod generics;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use generics::{
     BoundLifetimes, ConstParam, GenericParam, Generics, LifetimeDef, PredicateEq,
@@ -331,7 +333,7 @@ pub use generics::{
 pub use generics::{ImplGenerics, Turbofish, TypeGenerics};
 
 #[cfg(feature = "full")]
-mod item;
+pub mod item;
 #[cfg(feature = "full")]
 pub use item::{
     ArgCaptured, ArgSelf, ArgSelfRef, FnArg, FnDecl, ForeignItem, ForeignItemFn, ForeignItemMacro,
@@ -345,15 +347,15 @@ pub use item::{
 };
 
 #[cfg(feature = "full")]
-mod file;
+pub mod file;
 #[cfg(feature = "full")]
 pub use file::File;
 
-mod lifetime;
+pub mod lifetime;
 pub use lifetime::Lifetime;
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod lit;
+pub mod lit;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use lit::{
     FloatSuffix, IntSuffix, Lit, LitBool, LitByte, LitByteStr, LitChar, LitFloat, LitInt, LitStr,
@@ -361,22 +363,22 @@ pub use lit::{
 };
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod mac;
+pub mod mac;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use mac::{Macro, MacroDelimiter};
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod derive;
+pub mod derive;
 #[cfg(feature = "derive")]
 pub use derive::{Data, DataEnum, DataStruct, DataUnion, DeriveInput};
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod op;
+pub mod op;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use op::{BinOp, UnOp};
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod ty;
+pub mod ty;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use ty::{
     Abi, BareFnArg, BareFnArgName, ReturnType, Type, TypeArray, TypeBareFn, TypeGroup,
@@ -385,7 +387,7 @@ pub use ty::{
 };
 
 #[cfg(any(feature = "full", feature = "derive"))]
-mod path;
+pub mod path;
 #[cfg(any(feature = "full", feature = "derive"))]
 pub use path::{
     AngleBracketedGenericArguments, Binding, Constraint, GenericArgument,
@@ -398,7 +400,7 @@ pub mod buffer;
 pub mod ext;
 pub mod punctuated;
 #[cfg(all(any(feature = "full", feature = "derive"), feature = "extra-traits"))]
-mod tt;
+pub mod tt;
 
 // Not public API except the `parse_quote!` macro.
 #[cfg(feature = "parsing")]
@@ -417,7 +419,7 @@ pub mod parse_macro_input;
 #[cfg(all(feature = "parsing", feature = "printing"))]
 pub mod spanned;
 
-mod gen {
+pub mod gen {
     /// Syntax tree traversal to walk a shared borrow of a syntax tree.
     ///
     /// Each method of the [`Visit`] trait is a hook that can be overridden to
@@ -538,30 +540,30 @@ pub use gen::*;
 #[doc(hidden)]
 pub mod export;
 
-mod keyword;
+pub mod keyword;
 
 #[cfg(feature = "parsing")]
-mod lookahead;
+pub mod lookahead;
 
 #[cfg(feature = "parsing")]
 pub mod parse;
 
-mod span;
+pub mod span;
 
 #[cfg(all(any(feature = "full", feature = "derive"), feature = "printing"))]
-mod print;
+pub mod print;
 
-mod thread;
+pub mod thread;
 
 ////////////////////////////////////////////////////////////////////////////////
 
 #[cfg(any(feature = "parsing", feature = "full", feature = "derive"))]
 #[allow(non_camel_case_types)]
-struct private;
+pub struct private;
 
 ////////////////////////////////////////////////////////////////////////////////
 
-mod error;
+pub mod error;
 pub use error::{Error, Result};
 
 /// Parse tokens of source code into the chosen syntax tree node.
