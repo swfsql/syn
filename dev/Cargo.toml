@@ -14,4 +14,4 @@ path = "main.rs"
 name = "syn-dev"
 
 [dependencies]
-syn = { path = "..", features = ["full", "extra-traits"] }
+syn-pub-items = { path = "..", features = ["full", "extra-traits"] }
